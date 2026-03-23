@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karim & Mai Engagement 💌</title>
+<title>Karim & Mai Engagement</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #fceff9, #e0c3fc);
-  overflow-x: hidden;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(to bottom, #ffffff, #f8f5f2);
   text-align: center;
+  overflow-x: hidden;
 }
 
 /* Secret counter */
@@ -21,72 +21,73 @@ body {
   position: fixed;
   top: 10px;
   left: 10px;
-  font-size: 14px;
-  opacity: 0.6;
+  font-size: 13px;
+  opacity: 0.4;
 }
 
 /* Envelope */
 .envelope {
-  width: 220px;
-  height: 140px;
+  width: 260px;
+  height: 160px;
   background: #fff;
-  margin: 150px auto 0;
+  margin: 120px auto 0;
   position: relative;
-  cursor: pointer;
-  border-radius: 10px;
-  perspective: 1000px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   overflow: hidden;
 }
 
+/* Flap */
 .flap {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #ffb6c1;
+  background: linear-gradient(135deg,#e8d5c4,#d4af37);
   clip-path: polygon(0 0, 50% 50%, 100% 0);
   transform-origin: top;
-  transition: transform 0.8s ease;
-  z-index: 2;
+  transition: 0.8s;
+  z-index: 3;
 }
 
-.envelope.open .flap {
+.open .flap {
   transform: rotateX(-180deg);
 }
 
-/* Card inside envelope */
+/* Pull card */
 .inner-card {
   position: absolute;
-  width: 90%;
-  left: 5%;
-  top: 20px;
+  width: 85%;
+  left: 7.5%;
+  height: 120px;
   background: white;
-  padding: 15px;
+  top: 30px;
   border-radius: 10px;
-  transform: translateY(100%);
-  transition: transform 1s ease;
-  z-index: 1;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  z-index: 2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  color:#999;
 }
 
-.envelope.open .inner-card {
-  transform: translateY(-120%);
-}
-
-/* Full card after animation */
+/* Main card */
 .card {
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   background: white;
   margin: 20px auto;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  padding: 30px 20px;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
   display: none;
+  border: 1px solid #eee;
 }
 
 .show {
   display: block;
-  animation: fadeIn 1.5s ease;
+  animation: fadeIn 1.2s ease;
 }
 
 @keyframes fadeIn {
@@ -96,43 +97,35 @@ body {
 
 h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 34px;
-  color: #e91e63;
+  font-size: 38px;
+  color: #c6a769;
 }
 
-/* Hearts */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  to { transform: translateY(-110vh); }
+/* Divider */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: #d4af37;
+  margin: 15px auto;
 }
 
 /* Buttons */
 button {
-  padding: 10px 20px;
+  padding: 12px 22px;
   border: none;
-  background: #e91e63;
+  background: #d4af37;
   color: white;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
-  margin: 5px;
+  margin: 6px;
+  font-size: 14px;
 }
 
 /* Countdown */
 #countdown {
   margin-top: 15px;
-  font-size: 18px;
-}
-
-#musicBtn {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  font-size: 16px;
+  color:#777;
 }
 </style>
 </head>
@@ -141,41 +134,28 @@ button {
 
 <div id="secretCounter">• <span id="count">0</span></div>
 
-<div class="envelope" onclick="openEnvelope(this)">
+<div class="envelope" id="env">
   <div class="flap"></div>
-
-  <div class="inner-card">
-    💌 Invitation
-  </div>
+  <div class="inner-card" id="pullCard">Pull me ↑</div>
 </div>
 
 <div id="card" class="card">
-  <h1>Karim & Mai Engagement 💍</h1>
-
+  <h1>Karim & Mai</h1>
+  <div class="divider"></div>
   <p id="message"></p>
 
-  <p><strong>📅 Date:</strong> April 18, 2026</p>
-  <p><strong>📍 Location:</strong> Cairo, Egypt</p>
+  <p><strong>April 18, 2026</strong></p>
+  <p>Cairo, Egypt</p>
 
   <div id="countdown"></div>
 
   <br>
-  <button onclick="showMap()">View Location</button>
 
-  <hr>
-
-  <h3>Will you join us?</h3>
-  <button onclick="rsvp(true)">I’m coming ❤️</button>
-  <button onclick="rsvp(false)">Can’t make it 😔</button>
+  <button onclick="rsvp(true)">I’m coming</button>
+  <button onclick="rsvp(false)">Can’t make it</button>
 
   <p id="responseMsg"></p>
 </div>
-
-<button id="musicBtn" onclick="toggleMusic()">🔊</button>
-
-<audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
-</audio>
 
 <script>
 
@@ -184,110 +164,99 @@ let count = localStorage.getItem("count") || 0;
 document.getElementById("count").innerText = count;
 
 // RSVP
-function rsvp(isComing) {
-  if (localStorage.getItem("answered")) return;
+function rsvp(isComing){
+  if(localStorage.getItem("answered")) return;
+  localStorage.setItem("answered",true);
 
-  localStorage.setItem("answered", true);
-
-  if (isComing) {
+  if(isComing){
     count++;
-    localStorage.setItem("count", count);
+    localStorage.setItem("count",count);
     document.getElementById("count").innerText = count;
 
     document.getElementById("responseMsg").innerText =
-      "OOOH YEAH 😍🔥 We can't wait to party with you!! 🎉❤️";
-  } else {
+    "Ooooh yeah 😍✨ This will be unforgettable with you there!";
+  }else{
     document.getElementById("responseMsg").innerText =
-      "Aww we'll miss you so much 😢💔 hope to see you soon ❤️";
+    "We’ll truly miss you 💔 but you’ll be in our hearts";
   }
 }
 
-// Open animation
-function openEnvelope(el) {
-  el.classList.add("open");
-
-  setTimeout(() => {
-    document.getElementById("card").classList.add("show");
-    typeMessage();
-    startHearts();
-    startCountdown();
-    music.play();
-    setTimeout(confetti, 2000);
-  }, 1200);
-}
-
-// Typewriter
-let text = "With joy in our hearts, we invite you to celebrate our engagement...";
-let i = 0;
-function typeMessage() {
-  let speed = 40;
-  function type() {
-    if (i < text.length) {
-      document.getElementById("message").innerHTML += text.charAt(i);
+// TYPE TEXT (FIXED)
+let text = "With joy in our hearts, we invite you to celebrate our engagement.";
+let i=0;
+function typeText(){
+  let el = document.getElementById("message");
+  el.innerHTML="";
+  function t(){
+    if(i<text.length){
+      el.innerHTML += text[i];
       i++;
-      setTimeout(type, speed);
+      setTimeout(t,35);
     }
   }
-  type();
+  t();
 }
 
-// Hearts
-function startHearts() {
-  setInterval(() => {
-    let heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 300);
+// Pull interaction
+let card = document.getElementById("pullCard");
+let env = document.getElementById("env");
+let startY = 0;
+let moved = false;
+
+card.addEventListener("touchstart",e=>{
+  startY = e.touches[0].clientY;
+});
+
+card.addEventListener("touchmove",e=>{
+  let move = startY - e.touches[0].clientY;
+  if(move > 20){
+    card.style.transform = `translateY(-${move}px)`;
+    moved = true;
+  }
+});
+
+card.addEventListener("touchend",openFull);
+
+card.addEventListener("mousedown",e=>{
+  startY = e.clientY;
+  document.onmousemove = (ev)=>{
+    let move = startY - ev.clientY;
+    if(move>20){
+      card.style.transform = `translateY(-${move}px)`;
+      moved=true;
+    }
+  };
+  document.onmouseup = openFull;
+});
+
+function openFull(){
+  if(!moved) return;
+  env.classList.add("open");
+
+  setTimeout(()=>{
+    document.getElementById("card").classList.add("show");
+    typeText();
+    startCountdown();
+  },700);
+
+  document.onmousemove=null;
 }
 
 // Countdown
-function startCountdown() {
+function startCountdown(){
   let date = new Date("April 18, 2026 20:00:00").getTime();
-  setInterval(() => {
+  setInterval(()=>{
     let now = new Date().getTime();
-    let diff = date - now;
+    let diff = date-now;
 
-    let d = Math.floor(diff / (1000*60*60*24));
-    let h = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
-    let m = Math.floor((diff % (1000*60*60))/(1000*60));
+    let d = Math.floor(diff/(1000*60*60*24));
+    let h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    let m = Math.floor((diff%(1000*60*60))/(1000*60));
 
     document.getElementById("countdown").innerHTML =
-      "⏳ " + d + " days " + h + " hrs " + m + " min";
-  }, 1000);
+    d+" days • "+h+" hrs • "+m+" min";
+  },1000);
 }
-
-// Map
-function showMap() {
-  window.open("https://maps.google.com?q=Cairo", "_blank");
-}
-
-// Music
-let music = document.getElementById("music");
-function toggleMusic() {
-  if (music.paused) music.play();
-  else music.pause();
-}
-
-// Confetti
-function confetti() {
-  for (let i = 0; i < 50; i++) {
-    let conf = document.createElement("div");
-    conf.innerHTML = "🎉";
-    conf.style.position = "fixed";
-    conf.style.left = Math.random()*100+"vw";
-    conf.style.top = "-10px";
-    conf.style.animation = "fall 3s linear";
-    document.body.appendChild(conf);
-    setTimeout(()=>conf.remove(),3000);
-  }
-}
-
-let style = document.createElement('style');
-style.innerHTML = `@keyframes fall { to { transform: translateY(110vh); } }`;
-document.head.appendChild(style);
 
 </script>
 
