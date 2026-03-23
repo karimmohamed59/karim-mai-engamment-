@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're Invited 💌</title>
+<title>Karim & Mai Engagement 💌</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
@@ -27,13 +27,14 @@ body {
 
 /* Envelope */
 .envelope {
-  width: 200px;
-  height: 120px;
+  width: 220px;
+  height: 140px;
   background: #fff;
   margin: 150px auto;
   position: relative;
   cursor: pointer;
   border-radius: 10px;
+  perspective: 1000px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
@@ -43,11 +44,12 @@ body {
   height: 100%;
   background: #ffb6c1;
   clip-path: polygon(0 0, 50% 50%, 100% 0);
-  transition: 0.6s;
+  transform-origin: top;
+  transition: transform 0.8s ease;
 }
 
 .envelope.open .flap {
-  transform: rotateX(180deg);
+  transform: rotateX(-180deg);
 }
 
 /* Card */
@@ -64,17 +66,17 @@ body {
 
 .show {
   display: block;
-  animation: fadeIn 2s;
+  animation: fadeIn 1.5s ease;
 }
 
 @keyframes fadeIn {
-  from {opacity:0; transform: translateY(20px);}
+  from {opacity:0; transform: translateY(30px);}
   to {opacity:1; transform: translateY(0);}
 }
 
 h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 36px;
+  font-size: 34px;
   color: #e91e63;
 }
 
@@ -87,9 +89,7 @@ h1 {
 }
 
 @keyframes float {
-  to {
-    transform: translateY(-110vh);
-  }
+  to { transform: translateY(-110vh); }
 }
 
 /* Buttons */
@@ -126,10 +126,11 @@ button {
 </div>
 
 <div id="card" class="card">
-  <h1>We’re Getting Engaged 💍</h1>
+  <h1>Karim & Mai Engagement 💍</h1>
+
   <p id="message"></p>
 
-  <p><strong>📅 Date:</strong> 1 May 2026</p>
+  <p><strong>📅 Date:</strong> April 18, 2026</p>
   <p><strong>📍 Location:</strong> Cairo, Egypt</p>
 
   <div id="countdown"></div>
@@ -154,7 +155,7 @@ button {
 
 <script>
 
-// Load saved count
+// Load count
 let count = localStorage.getItem("count") || 0;
 document.getElementById("count").innerText = count;
 
@@ -168,13 +169,16 @@ function rsvp(isComing) {
     count++;
     localStorage.setItem("count", count);
     document.getElementById("count").innerText = count;
-    document.getElementById("responseMsg").innerText = "Yay! Can't wait to see you ❤️";
+
+    document.getElementById("responseMsg").innerText =
+      "Amazing! We can't wait to celebrate together and see you there ❤️🎉";
   } else {
-    document.getElementById("responseMsg").innerText = "We'll miss you 😔";
+    document.getElementById("responseMsg").innerText =
+      "We'll miss you, but thank you for letting us know 💔";
   }
 }
 
-// Envelope open
+// Open envelope
 function openEnvelope(el) {
   el.classList.add("open");
   document.getElementById("card").classList.add("show");
@@ -186,7 +190,7 @@ function openEnvelope(el) {
 }
 
 // Typewriter
-let text = "With joy in our hearts, we invite you to celebrate our special day...";
+let text = "With joy in our hearts, we invite you to celebrate our engagement...";
 let i = 0;
 function typeMessage() {
   let speed = 40;
@@ -214,7 +218,7 @@ function startHearts() {
 
 // Countdown
 function startCountdown() {
-  let date = new Date("May 1, 2026 20:00:00").getTime();
+  let date = new Date("April 18, 2026 20:00:00").getTime();
   setInterval(() => {
     let now = new Date().getTime();
     let diff = date - now;
