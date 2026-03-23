@@ -30,12 +30,13 @@ body {
   width: 220px;
   height: 140px;
   background: #fff;
-  margin: 150px auto;
+  margin: 150px auto 0;
   position: relative;
   cursor: pointer;
   border-radius: 10px;
   perspective: 1000px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
 .flap {
@@ -46,13 +47,32 @@ body {
   clip-path: polygon(0 0, 50% 50%, 100% 0);
   transform-origin: top;
   transition: transform 0.8s ease;
+  z-index: 2;
 }
 
 .envelope.open .flap {
   transform: rotateX(-180deg);
 }
 
-/* Card */
+/* Card inside envelope */
+.inner-card {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  top: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  transform: translateY(100%);
+  transition: transform 1s ease;
+  z-index: 1;
+}
+
+.envelope.open .inner-card {
+  transform: translateY(-120%);
+}
+
+/* Full card after animation */
 .card {
   width: 90%;
   max-width: 400px;
@@ -123,6 +143,10 @@ button {
 
 <div class="envelope" onclick="openEnvelope(this)">
   <div class="flap"></div>
+
+  <div class="inner-card">
+    💌 Invitation
+  </div>
 </div>
 
 <div id="card" class="card">
@@ -155,7 +179,7 @@ button {
 
 <script>
 
-// Load count
+// Counter
 let count = localStorage.getItem("count") || 0;
 document.getElementById("count").innerText = count;
 
@@ -171,22 +195,25 @@ function rsvp(isComing) {
     document.getElementById("count").innerText = count;
 
     document.getElementById("responseMsg").innerText =
-      "Amazing! We can't wait to celebrate together and see you there ❤️🎉";
+      "OOOH YEAH 😍🔥 We can't wait to party with you!! 🎉❤️";
   } else {
     document.getElementById("responseMsg").innerText =
-      "We'll miss you, but thank you for letting us know 💔";
+      "Aww we'll miss you so much 😢💔 hope to see you soon ❤️";
   }
 }
 
-// Open envelope
+// Open animation
 function openEnvelope(el) {
   el.classList.add("open");
-  document.getElementById("card").classList.add("show");
-  typeMessage();
-  startHearts();
-  startCountdown();
-  music.play();
-  setTimeout(confetti, 3000);
+
+  setTimeout(() => {
+    document.getElementById("card").classList.add("show");
+    typeMessage();
+    startHearts();
+    startCountdown();
+    music.play();
+    setTimeout(confetti, 2000);
+  }, 1200);
 }
 
 // Typewriter
