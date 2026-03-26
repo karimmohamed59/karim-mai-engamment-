@@ -197,7 +197,22 @@ button:hover {
 </style>
 
 </head>
-
+<div id="popup" style="
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:white;
+    padding:20px 30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    z-index:999;
+    font-size:18px;
+">
+    <span id="popupText"></span>
+</div>
+    
 <body>
 
 <div id="yesCount" class="counter">0</div>
@@ -273,15 +288,27 @@ function startTyping() {
 function coming() {
     yes++;
     document.getElementById("yesCount").innerText = yes;
-    alert("We’re so excited to see you ❤️");
+    showPopup("We’re so excited to see you ❤️");
 }
 
 function notComing() {
     no++;
     document.getElementById("noCount").innerText = no;
-    alert("You’ll be missed 😔");
+    showPopup("You’ll be missed 😔");
 }
+    
+function showPopup(message) {
+    const popup = document.getElementById("popup");
+    const text = document.getElementById("popupText");
 
+    text.innerText = message;
+    popup.style.display = "block";
+
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 2500);
+}
+    
 /* Countdown */
 const eventDate = new Date("April 18, 2026 00:00:00").getTime();
 
