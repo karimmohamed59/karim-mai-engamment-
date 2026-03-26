@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Karim & Mai Engagement</title>
+<title>Karim & Mai Engagement❤️</title>
 
+<!-- Premium Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
@@ -15,85 +16,81 @@ body {
     overflow-x: hidden;
 }
 
-/* GOLD SHIMMER */
-.gold {
-    background: linear-gradient(90deg, #d4af37, #fff8dc, #d4af37);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: shimmer 3s linear infinite;
+/* Envelope */
+.envelope {
+    margin-top: 70px;
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #f0f0f0;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
 }
-
-@keyframes shimmer {
-    0% { background-position: 0% }
-    100% { background-position: 200% }
-}
-
-/* Envelope wrapper */
+/* Wrapper to control spacing */
 .envelope-wrapper {
     margin-top: 80px;
 }
 
-/* Open text */
+/* Open text (FIXED POSITION ABOVE) */
 .open-text {
     display: inline-block;
     background: white;
     padding: 10px 25px;
     border-radius: 25px;
-    margin-bottom: 15px;
+    font-size: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    font-weight: 500;
+    margin-bottom: 15px;
 }
 
-/* Envelope */
+/* BIGGER Envelope */
 .envelope {
     position: relative;
     width: 340px;
     height: 220px;
-    margin: auto;
     background: #f0f0f0;
     border-radius: 18px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+    margin-left: auto;
+    margin-right: auto;
     cursor: pointer;
-    overflow: hidden;
-}
-
-/* Flap */
+    box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}    
+    
 .flap {
     position: absolute;
     width: 100%;
     height: 100%;
     background: #f8a5a5;
-    clip-path: polygon(0 0, 100% 0, 50% 70%);
+    clip-path: polygon(0 0, 100% 0, 50% 65%);
     transform-origin: top;
     transition: 0.7s;
-    z-index: 2;
 }
 
 .envelope.open .flap {
     transform: rotateX(180deg);
 }
 
-/* LETTER (SLIDING OUT) */
-.inner-letter {
+/* Open Me label */
+.open-text {
     position: absolute;
-    width: 90%;
-    height: 140px;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
     background: white;
-    left: 5%;
-    bottom: 10px;
-    border-radius: 10px;
-    transition: 1s;
-    z-index: 1;
-}
-
-.envelope.open .inner-letter {
-    transform: translateY(-180px);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-size: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    font-weight: 500;
 }
 
 /* Card */
 .card {
     display: none;
-    margin: 60px auto;
+    margin: 50px auto;
     width: 360px;
     background: #f0f0f0;
     padding: 30px;
@@ -101,25 +98,12 @@ body {
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* Title with sparkle */
+/* Title */
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 38px;
-    position: relative;
-}
-
-/* Sparkle */
-.sparkle::after {
-    content: "✨";
-    position: absolute;
-    right: -25px;
-    top: 0;
-    animation: sparkle 1s infinite alternate;
-}
-
-@keyframes sparkle {
-    from { opacity: 0.3; transform: scale(1);}
-    to { opacity: 1; transform: scale(1.4);}
+    font-size: 36px;
+    color: #e91e63;
+    margin-bottom: 10px;
 }
 
 /* Ring */
@@ -128,22 +112,59 @@ body {
     margin: 10px 0;
 }
 
-/* Typing */
+/* Typing text */
 .typing {
     min-height: 22px;
     margin: 8px 0;
+    font-size: 16px;
 }
 
-/* Buttons */
+/* Countdown */
+#countdown {
+    margin: 12px 0;
+}
+
+/* Button */
+.location-btn {
+    margin: 15px 0;
+    background: #e91e63;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 25px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* Divider */
+hr {
+    margin: 20px 0;
+}
+
+/* RSVP */
 button {
     margin: 10px;
     padding: 10px 20px;
-    border-radius: 25px;
     border: none;
+    border-radius: 25px;
+    cursor: pointer;
     background: #e91e63;
     color: white;
-    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s;
 }
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Counters */
+.counter {
+    position: fixed;
+    top: 10px;
+    font-weight: bold;
+}
+#yesCount { left: 15px; }
+#noCount { right: 15px; }
 
 /* Hearts */
 .heart {
@@ -166,28 +187,32 @@ button {
     border-radius: 50%;
 }
 
+.heart::before { top: -6px; left: 0; }
+.heart::after { left: -6px; top: 0; }
+
 @keyframes float {
     from { transform: translateY(0) rotate(45deg); }
     to { transform: translateY(-100vh) rotate(45deg); }
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="envelope-wrapper">
-    <div class="open-text">💌 Tap to Open</div>
+<div id="yesCount" class="counter">0</div>
+<div id="noCount" class="counter">0</div>
 
-    <div class="envelope" onclick="openEnvelope()">
-        <div class="flap"></div>
-        <div class="inner-letter"></div>
-    </div>
+<div class="envelope" onclick="openEnvelope()">
+    <div class="open-text">💌 Tap to Open</div>
+    <div class="flap"></div>
 </div>
 
 <div id="card" class="card">
-    <div class="title gold sparkle">Karim & Mai</div>
 
-    <div class="ring">💍</div>
+    <div class="title">Karim & Mai Engagement</div>
+
+    <div class="ring">💍❤️</div>
 
     <div id="line1" class="typing"></div>
     <div id="line2" class="typing"></div>
@@ -196,22 +221,29 @@ button {
 
     <div id="countdown"></div>
 
-    <a href="https://maps.google.com" target="_blank">View Location</a>
+    <a class="location-btn" href="https://maps.app.goo.gl/DCoZfnU6cCvsSjgy9" target="_blank">
+        View Location
+    </a>
 
     <hr>
 
     <div><b>Will you join us?</b></div>
-    <button>I’m coming ❤️</button>
-    <button>Can’t make it 😔</button>
+
+    <button onclick="coming()">I’m coming ❤️</button>
+    <button onclick="notComing()">Can’t make it 😔</button>
+
 </div>
 
 <script>
+let yes = 0;
+let no = 0;
+
 function openEnvelope() {
     document.querySelector('.envelope').classList.add('open');
     setTimeout(() => {
         document.getElementById('card').style.display = 'block';
         startTyping();
-    }, 1200);
+    }, 600);
 }
 
 /* Typing */
@@ -230,8 +262,36 @@ function startTyping() {
     typeLine("line1", "With joy in our hearts,", 0);
     typeLine("line2", "we invite you to celebrate our engagement 💖", 1500);
     typeLine("line3", "📅 April 18, 2026", 3500);
-    typeLine("line4", "📍 Cairo, Egypt", 5000);
+    typeLine("line4", "📍 Cairo, Egypt, Galaa club, the view venue", 5000);
 }
+
+/* RSVP */
+function coming() {
+    yes++;
+    document.getElementById("yesCount").innerText = yes;
+    alert("We’re so excited to see you ❤️");
+}
+
+function notComing() {
+    no++;
+    document.getElementById("noCount").innerText = no;
+    alert("You’ll be missed 😔");
+}
+
+/* Countdown */
+const eventDate = new Date("April 18, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = eventDate - now;
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+
+    document.getElementById("countdown").innerHTML =
+        "⏳ " + d + " days " + h + " hrs " + m + " min";
+}, 1000);
 
 /* Hearts */
 setInterval(() => {
