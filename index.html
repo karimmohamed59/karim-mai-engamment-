@@ -237,13 +237,16 @@ button:hover {
 <script>
 let yes = 0;
 let no = 0;
+let typed = false;
 
 function openEnvelope() {
     document.querySelector('.envelope').classList.add('open');
     setTimeout(() => {
         document.getElementById('card').style.display = 'block';
+        if (!typed) {
         startTyping();
-    }, 600);
+        typed = true;
+    }
 }
 
 /* Typing */
