@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ✅ Mobile scaling -->
+<!-- Mobile scaling -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Karim & Mai Engagement❤️</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     background: #f3ebee;
+    text-align: center;
     font-family: 'Poppins', sans-serif;
 
     display: flex;
@@ -31,7 +31,7 @@ body {
     position: relative;
     width: 90%;
     max-width: 340px;
-    height: 200px;
+    height: 220px;
     background: #f0f0f0;
     border-radius: 18px;
     cursor: pointer;
@@ -61,27 +61,29 @@ body {
     background: white;
     padding: 10px 25px;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    font-weight: 500;
 }
 
 /* Card */
 .card {
     display: none;
-    margin-top: 40px;
+    margin: 50px auto;
     width: 90%;
-    max-width: 380px;
+    max-width: 360px;
     background: #f0f0f0;
-    padding: 20px;
+    padding: 30px;
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-/* Title */
+/* Title (UNCHANGED) */
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(28px, 5vw, 36px);
+    font-size: 36px;
     color: #e91e63;
+    margin-bottom: 10px;
 }
 
 /* Ring */
@@ -90,11 +92,11 @@ body {
     margin: 10px 0;
 }
 
-/* Typing */
+/* Typing text (UNCHANGED) */
 .typing {
     min-height: 22px;
     margin: 8px 0;
-    font-size: clamp(14px, 3.5vw, 16px);
+    font-size: 16px;
 }
 
 /* Countdown */
@@ -102,7 +104,7 @@ body {
     margin: 12px 0;
 }
 
-/* Location button */
+/* Button */
 .location-btn {
     margin: 15px 0;
     background: #e91e63;
@@ -118,7 +120,7 @@ hr {
     margin: 20px 0;
 }
 
-/* Buttons */
+/* RSVP buttons */
 button {
     margin: 10px;
     padding: 10px 20px;
@@ -188,12 +190,11 @@ button:hover {
     to { transform: translateY(-100vh) rotate(45deg); }
 }
 
-/* ✅ Slight zoom for laptops */
-@media (min-width: 768px) {
-    body { zoom: 1.1; }
-}
-@media (min-width: 1200px) {
-    body { zoom: 1.2; }
+/* Gentle zoom ONLY on large screens */
+@media (min-width: 1024px) {
+    body {
+        zoom: 1.15;
+    }
 }
 </style>
 </head>
@@ -211,6 +212,7 @@ button:hover {
 <div id="card" class="card">
 
     <div class="title">Karim & Mai Engagement</div>
+
     <div class="ring">💍❤️</div>
 
     <div id="line1" class="typing"></div>
@@ -251,7 +253,6 @@ function openEnvelope() {
     }, 600);
 }
 
-/* Typing */
 function typeLine(id, text, delay) {
     let i = 0;
     setTimeout(() => {
@@ -270,7 +271,6 @@ function startTyping() {
     typeLine("line4", "📍 Cairo, Egypt, Galaa club, the view venue", 5000);
 }
 
-/* RSVP */
 function coming() {
     yes++;
     document.getElementById("yesCount").innerText = yes;
@@ -290,7 +290,6 @@ function showPopup(message) {
     setTimeout(() => popup.style.display = "none", 2500);
 }
 
-/* Countdown */
 const eventDate = new Date("April 18, 2026 00:00:00").getTime();
 
 setInterval(() => {
@@ -305,7 +304,6 @@ setInterval(() => {
         "⏳ " + d + " days " + h + " hrs " + m + " min";
 }, 1000);
 
-/* Hearts */
 setInterval(() => {
     let heart = document.createElement("div");
     heart.className = "heart";
