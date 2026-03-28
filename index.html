@@ -2,63 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- ✅ Mobile scaling -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Karim & Mai Engagement❤️</title>
 
-<!-- Premium Fonts -->
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     background: #f3ebee;
-    text-align: center;
     font-family: 'Poppins', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
 /* Envelope */
 .envelope {
-    margin-top: 70px;
-    position: relative;
-    width: 280px;
-    height: 180px;
-    background: #f0f0f0;
-    border-radius: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    cursor: pointer;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-}
-/* Wrapper to control spacing */
-.envelope-wrapper {
     margin-top: 80px;
-}
-
-/* Open text (FIXED POSITION ABOVE) */
-.open-text {
-    display: inline-block;
-    background: white;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-size: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    font-weight: 500;
-    margin-bottom: 15px;
-}
-
-/* BIGGER Envelope */
-.envelope {
     position: relative;
-    width: 340px;
-    height: 220px;
+    width: 90%;
+    max-width: 340px;
+    height: 200px;
     background: #f0f0f0;
     border-radius: 18px;
-    margin-left: auto;
-    margin-right: auto;
     cursor: pointer;
     box-shadow: 0 20px 45px rgba(0,0,0,0.25);
-}    
-    
+}
+
 .flap {
     position: absolute;
     width: 100%;
@@ -73,7 +52,7 @@ body {
     transform: rotateX(180deg);
 }
 
-/* Open Me label */
+/* Open text */
 .open-text {
     position: absolute;
     top: -30px;
@@ -82,18 +61,18 @@ body {
     background: white;
     padding: 10px 25px;
     border-radius: 25px;
-    font-size: 15px;
+    font-size: 14px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    font-weight: 500;
 }
 
 /* Card */
 .card {
     display: none;
-    margin: 50px auto;
-    width: 360px;
+    margin-top: 40px;
+    width: 90%;
+    max-width: 380px;
     background: #f0f0f0;
-    padding: 30px;
+    padding: 20px;
     border-radius: 25px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
@@ -101,9 +80,8 @@ body {
 /* Title */
 .title {
     font-family: 'Great Vibes', cursive;
-    font-size: 36px;
+    font-size: clamp(28px, 5vw, 36px);
     color: #e91e63;
-    margin-bottom: 10px;
 }
 
 /* Ring */
@@ -112,11 +90,11 @@ body {
     margin: 10px 0;
 }
 
-/* Typing text */
+/* Typing */
 .typing {
     min-height: 22px;
     margin: 8px 0;
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
 }
 
 /* Countdown */
@@ -124,7 +102,7 @@ body {
     margin: 12px 0;
 }
 
-/* Button */
+/* Location button */
 .location-btn {
     margin: 15px 0;
     background: #e91e63;
@@ -140,7 +118,7 @@ hr {
     margin: 20px 0;
 }
 
-/* RSVP */
+/* Buttons */
 button {
     margin: 10px;
     padding: 10px 20px;
@@ -165,6 +143,21 @@ button:hover {
 }
 #yesCount { left: 15px; }
 #noCount { right: 15px; }
+
+/* Popup */
+#popup {
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:white;
+    padding:20px 30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    z-index:999;
+    font-size:18px;
+}
 
 /* Hearts */
 .heart {
@@ -194,25 +187,17 @@ button:hover {
     from { transform: translateY(0) rotate(45deg); }
     to { transform: translateY(-100vh) rotate(45deg); }
 }
-</style>
 
+/* ✅ Slight zoom for laptops */
+@media (min-width: 768px) {
+    body { zoom: 1.1; }
+}
+@media (min-width: 1200px) {
+    body { zoom: 1.2; }
+}
+</style>
 </head>
-<div id="popup" style="
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
-    background:white;
-    padding:20px 30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    z-index:999;
-    font-size:18px;
-">
-    <span id="popupText"></span>
-</div>
-    
+
 <body>
 
 <div id="yesCount" class="counter">0</div>
@@ -226,7 +211,6 @@ button:hover {
 <div id="card" class="card">
 
     <div class="title">Karim & Mai Engagement</div>
-
     <div class="ring">💍❤️</div>
 
     <div id="line1" class="typing"></div>
@@ -249,6 +233,8 @@ button:hover {
 
 </div>
 
+<div id="popup"><span id="popupText"></span></div>
+
 <script>
 let yes = 0;
 let no = 0;
@@ -259,8 +245,8 @@ function openEnvelope() {
     setTimeout(() => {
         document.getElementById('card').style.display = 'block';
         if (!typed) {
-        startTyping();
-        typed = true;
+            startTyping();
+            typed = true;
         }
     }, 600);
 }
@@ -296,19 +282,14 @@ function notComing() {
     document.getElementById("noCount").innerText = no;
     showPopup("You’ll be missed 😔");
 }
-    
+
 function showPopup(message) {
     const popup = document.getElementById("popup");
-    const text = document.getElementById("popupText");
-
-    text.innerText = message;
+    document.getElementById("popupText").innerText = message;
     popup.style.display = "block";
-
-    setTimeout(() => {
-        popup.style.display = "none";
-    }, 2500);
+    setTimeout(() => popup.style.display = "none", 2500);
 }
-    
+
 /* Countdown */
 const eventDate = new Date("April 18, 2026 00:00:00").getTime();
 
